@@ -223,6 +223,7 @@ textarea{
 
 .pigeon {
     width: 20vw;
+    z-index: 1;
 }
 
 .animation-pigeon{
