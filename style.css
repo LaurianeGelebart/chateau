@@ -1,0 +1,381 @@
+*{
+    margin: 0;
+    padding: 0;
+   /* cursor : wait ; */
+}
+
+body{    
+   overflow-x: hidden;
+}
+
+nav {    
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    padding: 1vw;
+    align-items: center;
+    list-style: none;
+    justify-content: center;
+    background-color: palegoldenrod;
+    box-shadow: 0 2px 2vw black;
+}
+
+.nav-item{
+    width: auto ;
+}
+
+.nav-link{
+    text-decoration: none;
+    width: auto ;
+    margin: 0 2vw ;
+    color: black;
+    font-size: 1.4vw;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.nav-item:hover .nav-link{
+    animation: link-hover 2s ease-in-out infinite ;
+}
+
+main {
+    margin: 15vh 5vw 3vh;
+}
+
+
+/* ACCUEIL */
+
+.home{
+    background-color:aqua;
+}
+
+.title{
+    font-family: 'Perfect Dark (BRK)', sans-serif;
+    text-shadow: 5px 3px red;
+    font-size: 2.9vw;
+    cursor: default ; 
+}
+
+.title:hover{
+    animation: title-hover 2s ease-in-out infinite ;
+}
+
+.image-home{
+    width: 30%;
+    border-radius: 3%;
+}
+
+.turn{
+    animation: image-hover 2s linear infinite ;
+}
+
+.desc {    
+    padding: 0 3vw;
+    height: auto;
+}
+
+.desc div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.desc p{
+    width: 50%;
+    font-family: 'Ming', sans-serif;
+    font-size: 1.3vw;
+    color: magenta;
+    padding: 0 5vw 0 5vw;
+    height: auto;
+}
+
+.avis {
+    margin-bottom: 3vh;
+}
+
+.avis h2 {
+    font-size: 2.5vw;
+    margin: 2vw;
+    font-family: 'Combo', cursive;
+}
+
+.galery-comment {
+    display: flex;
+    flex-wrap: wrap;
+    width: 85%;
+    margin: 1vw auto;
+}
+
+.comment{
+    width: 25vw;
+    margin: 1vw 2vw;
+    padding: 3vw 5vw 3vw 3vw;
+    background-image: url("images/parchemin.png") ;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: auto;
+    min-height: 20vw;
+}
+
+.comment .text{
+    font-family: 'Dancing Script', cursive;
+    padding-bottom: 30px;
+    font-size: 1.2vw;
+}
+
+.comment h3{
+    font-family: arial;
+    font-size: 1vw;
+}
+
+.stars{
+    width: 100%;
+    margin: 0.5vw 0;
+}
+
+.stars img{
+    width: 3vw;
+}
+
+/* HISTOIRE */
+
+.story{
+    background-color: palegreen;
+}
+
+.story p{
+    font-family: 'Ming', sans-serif;
+    font-size: 1vw;
+    padding: 1vw 0 ;
+}
+
+.story h2{
+    font-family: 'Ming', sans-serif;
+    font-size: 1.3vw;
+    color: deeppink;
+    text-decoration:blue wavy underline;
+    font-family: arial ; 
+}
+
+/* HISTOIRE */
+
+.contact{
+    overflow-y: hidden;
+}
+
+#BackgroundVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 0;
+}
+
+.content {
+    position: fixed;
+    z-index: 1;
+  }
+
+form{
+    width: 30vw ;
+    background-image: url('images/textureLettre.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 3vw; 
+    margin: 3vw 0;
+}
+
+input{
+    width: 100%;
+    margin: 0.5vw 0;
+}
+
+textarea{
+    width: 100%;
+    margin: 0.5vw 0;
+}
+
+.btn{
+    width: auto;
+    min-width: 40%;
+    margin: 0.5vw auto;
+    padding: 0.5vw;
+    background-color: red;
+    font-size: 1vw;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    border-radius: 10%;
+    animation: btn-hover 2s ease-in-out infinite ;
+}
+
+.content-bird{
+    position: absolute;
+    top : 50vh ;
+    left: -20vw ; 
+    width: 20vw;
+    height: auto;
+}
+
+.pigeon {
+    width: 20vw;
+}
+
+.animation-pigeon{
+    animation: pigeon 4s linear  ;
+}
+
+/* ----------------------------- REPONSIVE ----------------------------- */
+
+@media (max-width: 1000px) {
+
+.nav-link{
+    margin: 0 2vw ;
+    font-size: 3vw;
+}
+
+main {
+    margin-top: 8vh;
+}
+
+.title{
+    animation: title-hover 2s ease-in-out infinite ;
+    font-size: 5.5vw;
+}
+
+.desc div{
+    flex-direction: column;
+}
+
+.desc p{
+    width: 100%;
+    font-size: 2.8vw;
+    padding: 2vw;
+}
+
+.desc img{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form{
+    width: 80% ;
+}
+
+
+
+}
+
+/* ----------------------------- ANIMATION ----------------------------- */
+
+@keyframes link-hover {
+    0% {
+        color:black;
+        font-size: 1.4vw;
+    }
+    15% {
+        color:red;
+        font-size: 1.7vw;
+    }
+    30% {
+        color: orange;
+        font-size: 1.3vw;
+    }
+    45% {
+        color: yellow;
+        font-size: 0.9vw;
+    }
+    60% {
+        color: green;
+        font-size: 1.4vw;
+    }
+    75% {
+        color: blue;
+        font-size: 1.8vw;
+    }
+    90% {
+        color: purple;
+        font-size: 1.1vw;
+    }
+    100% {
+        color: black;
+        font-size: 1.4vw;
+    }
+}
+
+@keyframes title-hover {
+    0% {
+        text-shadow: 5px 3px red;
+    }
+    15% {
+        text-shadow: 5px 3px orange;
+    }
+    30% {
+        text-shadow: 5px 3px yellow;
+    }
+    45% {
+        text-shadow: 5px 3px green;
+    }
+    60% {
+        text-shadow: 5px 3px blue;
+    }
+    75% {
+        text-shadow: 5px 3px indigo;
+    }
+    90% {
+        text-shadow: 5px 3px purple;
+    }
+    100% {
+        text-shadow: 5px 3px red;
+    }
+}
+
+@keyframes image-hover {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes btn-hover {
+    0% {
+        background-color: red;
+    }
+    15% {
+        background-color: orange;
+    }
+    30% {
+        background-color: yellow;
+    }
+    45% {
+        background-color: green;
+    }
+    60% {
+        background-color: blue;
+    }
+    75% {
+        background-color: indigo;
+    }
+    90% {
+        background-color:  purple;
+    }
+    100% {
+        background-color: red;
+    }
+}
+
+@keyframes pigeon {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(3000px);
+    }
+}
