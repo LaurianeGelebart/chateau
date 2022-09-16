@@ -8,6 +8,14 @@ body{
    overflow-x: hidden;
 }
 
+section{
+    display: block;
+}
+
+.un-display{
+    display: none;
+}
+
 nav {    
     position: fixed;
     top: 0;
@@ -228,6 +236,12 @@ textarea{
 
 .animation-pigeon{
     animation: pigeon 4s linear  ;
+}
+
+/* ----------------------------- JEU ----------------------------- */
+
+.go{
+    cursor: pointer;
 }
 
 /* ----------------------------- REPONSIVE ----------------------------- */

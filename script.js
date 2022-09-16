@@ -6,6 +6,11 @@ let img = document.getElementById('chateau-turn');
 
 let btn = document.getElementById('btn');
 
+let inscr_btn = document.getElementById('go-inscription');
+let connect_btn = document.getElementById('go-connexion');
+let inscr = document.getElementById('inscription');
+let connect = document.getElementById('connexion');
+
 if(title){
     title.addEventListener('mouseover', (evt) => {
         img.classList.add('turn');
@@ -18,6 +23,17 @@ if(title){
 if(btn){
     btn.addEventListener('click', (evt) => {
         pigeon.classList.add('animation-pigeon');
+    })
+}
+
+if(inscr_btn){ 
+    inscr_btn.addEventListener('click', (evt) => {
+        inscr.classList.remove('un-display');
+        connect.classList.add('un-display');
+    })
+    connect_btn.addEventListener('click', (evt) => {
+        inscr.classList.add('un-display');
+        connect.classList.remove('un-display');
     })
 }
 

@@ -35,7 +35,7 @@
                 $q=$BDD->prepare('SELECT Mail FROM utilisateur WHERE Mail=?');
                 $q->execute(array($Mail));
                 if($q->rowCount()==0){
-                    $q=$BDD->prepare('INSERT INTO utilisateur(Nom,Motdepasse,Mail,Score) VALUES (?,?,?,0)');
+                    $q=$BDD->prepare('INSERT INTO utilisateur(Nom,Motdepasse,Mail) VALUES (?,?,?)');
                     $q->execute(array($Nom,$Motdepasse,$Mail));
                     header('Location: accueil.php'); 
 
@@ -78,6 +78,9 @@
     <!-- Site CSS -->
     <link rel="stylesheet" href="style.css">
 
+    <!-- Script -->
+    <script src="script.js"></script>
+
     <!-- Font -->
     <link href="http://fonts.cdnfonts.com/css/ming" rel="stylesheet">
     <link href="http://fonts.cdnfonts.com/css/perfect-dark-brk" rel="stylesheet">
@@ -85,25 +88,44 @@
 </head>
 
 <body>
-    <h1 class="title">Connexion</h1>
-    <form method="post">
-        <input type="text" name="Mail" placeholder="Mail" value="<?php if (isset($Mail)) echo $Mail; ?>"
-            required="required">
-        <input type="password" name="Motdepasse" placeholder="Mot de passe"
-            value="<?php if (isset($Motdepasse)) echo $Motdepasse; ?>" required="required">
-        <input type="submit" name="connexion" value="Se connecter">
-    </form>
-    <h1 class="title">Inscription</h1>
-    <form method="post">
-        <input type="text" name="Nom" placeholder="Nom" value="<?php if (isset($Nom)) echo $Nom; ?>"
-            required="required">
-        <input type="text" name="Mail" placeholder="Mail" value="<?php if (isset($Mail)) echo $Mail; ?>"
-            required="required">
-        <input type="password" name="Motdepasse" placeholder="Mot de passe"
-            value="<?php if (isset($Motdepasse)) echo $Motdepasse; ?>" required="required">
-        <input type="password" name="Confirmermotdepasse" placeholder="Confirmer le mot de passe"
-            value="<?php if (isset($Confirmermotdepasse)) echo $Confirmermotdepasse; ?>" required="required">
-        <input type="submit" name="inscription" value="S'inscrire">
-    </form>
 
+<?php  require_once("navbar.php"); ?>
+
+    <main>
+<?php if(!(isset($_SESSION['IdUtilisateur']))) { ?>
+        <section id="connexion" class="connexion" >
+            <h1 class="title">Pour jouer connecte toi ;)</h1>
+            <form method="post">
+                <input type="text" name="Mail" placeholder="Mail" value="<?php if (isset($Mail)) echo $Mail; ?>"
+                    required="required">
+                <input type="password" name="Motdepasse" placeholder="Mot de passe"
+                    value="<?php if (isset($Motdepasse)) echo $Motdepasse; ?>" required="required">
+                <input type="submit" name="connexion" value="Se connecter">
+            </form>
+            <p id="go-inscription" class="go">Pas encore inscrit ?</p>
+        </section>
+
+        <section id="inscription" class="inscription un-display" >
+            <h1 class="title">Inscription</h1>
+            <form method="post">
+                <input type="text" name="Nom" placeholder="Nom" value="<?php if (isset($Nom)) echo $Nom; ?>"
+                    required="required">
+                <input type="text" name="Mail" placeholder="Mail" value="<?php if (isset($Mail)) echo $Mail; ?>"
+                    required="required">
+                <input type="password" name="Motdepasse" placeholder="Mot de passe"
+                    value="<?php if (isset($Motdepasse)) echo $Motdepasse; ?>" required="required">
+                <input type="password" name="Confirmermotdepasse" placeholder="Confirmer le mot de passe"
+                    value="<?php if (isset($Confirmermotdepasse)) echo $Confirmermotdepasse; ?>" required="required">
+                <input type="submit" name="inscription" value="S'inscrire">
+            </form>
+            <p id="go-connexion" class="go">Déjà inscrit finalement ?</p>
+        </section>
+
+ <?php } else { ?>
+        <section class="game" >
+
+        </section>
+<?php } ?>
+
+    </main>
 </body>
