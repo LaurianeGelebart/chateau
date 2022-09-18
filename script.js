@@ -5,6 +5,7 @@ let title = document.getElementById('title-turn');
 let img = document.getElementById('chateau-turn');
 
 let btn = document.getElementById('btn');
+let pigeon = document.getElementById('pigeon');
 
 let inscr_btn = document.getElementById('go-inscription');
 let connect_btn = document.getElementById('go-connexion');

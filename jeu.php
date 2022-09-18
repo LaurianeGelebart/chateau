@@ -67,7 +67,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>Connexion</title>
+    <title>Jeu</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -80,6 +80,7 @@
 
     <!-- Script -->
     <script src="script.js"></script>
+    <script src="game.js"></script>
 
     <!-- Font -->
     <link href="http://fonts.cdnfonts.com/css/ming" rel="stylesheet">
@@ -123,7 +124,9 @@
 
  <?php } else { ?>
         <section class="game" >
+            <canvas id="canvas" class="canvas" width="1500" height="750" >
 
+            </canvas>
         </section>
 <?php } ?>
 

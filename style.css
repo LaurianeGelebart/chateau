@@ -244,6 +244,18 @@ textarea{
     cursor: pointer;
 }
 
+.game{
+    display: flex;
+}
+
+.canvas{
+    margin: 0 auto ; 
+    background: url("images/background.png") ;
+    background-size: cover;
+    background-position: bottom;
+    cursor: pointer;
+}
+
 /* ----------------------------- REPONSIVE ----------------------------- */
 
 @media (max-width: 1000px) {
