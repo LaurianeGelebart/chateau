@@ -17,7 +17,7 @@
                 $_SESSION['Motdepasse']=$Motdepasse;
                 $result=$q->fetch();
                 $_SESSION['IdUtilisateur']=$result['IdUtilisateur'];
-                header('Location: accueil.php'); 
+                header('Location: jeu.php'); 
             }else{
                 echo 'Le mail ou le mot de passe ne correspond pas. ';
             }
@@ -37,7 +37,7 @@
                 if($q->rowCount()==0){
                     $q=$BDD->prepare('INSERT INTO utilisateur(Nom,Motdepasse,Mail) VALUES (?,?,?)');
                     $q->execute(array($Nom,$Motdepasse,$Mail));
-                    header('Location: accueil.php'); 
+                    header('Location: jeu.php'); 
 
                 }else{
                     echo 'Un compte existe déjà avec cette adresse e-mail';

@@ -6,6 +6,7 @@ let state = 0 ;
 let nbWicked = 0 ; 
 let wicked = [];
 let points = 0 ; 
+let difficulty = 0;
 
 const f1 = new Image();
 const f2 = new Image();
@@ -15,17 +16,23 @@ const lose = new Image();
 const beginning = new Image();
 
 class Wicked {
-    constructor(x, y, h, l, f) {
+
+    constructor(x, y, h, l, f, v) {
       this.x = x; //posX
       this.y = y; //posY
       this.h = h; //largeur
       this.l = l; //longueur
       this.f = f ; //image 
       this.dead = 0 ;
+      this.xStart=x;
+      this.yStart=y;
+      this.direction=(this.yStart-357)/(this.xStart-1300);
+      this.vitesse=2
     }
 
     move(){
-        this.x += 2 ; // On peut imaginer ajouter un attribut vitesse non ? 
+        this.x += this.vitesse ; // On peut imaginer ajouter un attribut vitesse non ? 
+        this.y += this.direction*this.vitesse;
     }
 }
 
@@ -49,10 +56,10 @@ function init() {
         x = 0 ;
         y = Math.floor(Math.random() * 300) + 340;
         random = Math.random(); 
-        if (random<0.25)  wicked[i] = new Wicked(x, y, 85, 60, f1)  ;  
-        else if (random>0.25 && random<=0.5)  wicked[i] = new Wicked(x, y, 85, 60, f2) 
-        else if (random>0.5 && random<=0.75)  wicked[i] = new Wicked(x, y, 85, 60, f3)  ; 
-        else  wicked[i] = new Wicked(x, y, 80, 100, f4) ; 
+        if (random<0.25)  wicked[i] = new Wicked(x, y, 85, 60, f1, 2)  ;  
+        else if (random>0.25 && random<=0.5)  wicked[i] = new Wicked(x, y, 85, 60, f2, 2) 
+        else if (random>0.5 && random<=0.75)  wicked[i] = new Wicked(x, y, 85, 60, f3, 2)  ; 
+        else  wicked[i] = new Wicked(x, y, 80, 100, f4, 2) ; 
 
        
     }
@@ -70,7 +77,6 @@ canvas.addEventListener('click', (evt) => {
 
         case 1 : // game 
             // if click on wicked
-            console.log("hey");
             for(let i=0; i<nbWicked; i++){
                 console.log(evt.x,"Xentre",wicked[i].x,"-",(wicked[i].x + wicked[i].l)); 
                 console.log(evt.y,"Yentre",wicked[i].y,"-",(wicked[i].y + wicked[i].h));
@@ -79,6 +85,7 @@ canvas.addEventListener('click', (evt) => {
                     && evt.y-150 >= wicked[i].y && evt.y-150 <= (wicked[i].y + wicked[i].h)) {
                             wicked[i].dead=1 ; 
                             points ++ ; 
+                            break;
                     };   
                 }
             }
@@ -96,7 +103,7 @@ canvas.addEventListener('click', (evt) => {
 
 /* ----------------------------- GAME LOOP ----------------------------- */
 function gameLoop(timeStamp){
-
+    difficulty++;
     switch(state){
 
         default : // beginning of the game (-> case 0)
@@ -105,7 +112,7 @@ function gameLoop(timeStamp){
 
         case 1 : // game 
             if (nbWicked<100){
-                nbWicked += Math.random() < 0.01 ? 1 : 0;
+                nbWicked += (Math.random()+difficulty/1000000) > 0.99 ? 1 : 0;
             }
             for(let i=0; i<nbWicked; i++){
                 if(!wicked[i].dead) wicked[i].move();
