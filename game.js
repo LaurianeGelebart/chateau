@@ -15,15 +15,17 @@ const lose = new Image();
 const beginning = new Image();
 
 class Wicked {
-    constructor(x, y, f) {
-      this.x = x;
-      this.y = y;
-      this.f = f ; 
+    constructor(x, y, h, l, f) {
+      this.x = x; //posX
+      this.y = y; //posY
+      this.h = h; //largeur
+      this.l = l; //longueur
+      this.f = f ; //image 
       this.dead = 0 ;
     }
 
     move(){
-        this.x += 2 ; 
+        this.x += 2 ; // On peut imaginer ajouter un attribut vitesse non ? 
     }
 }
 
@@ -42,17 +44,17 @@ function init() {
     canvas = document.getElementById('canvas');
     context = canvas.getContext('2d');
 
-    let image, random ; 
+    let random ; 
     for(let i=0; i<100; i++){ //create 100 wickeds
         x = 0 ;
         y = Math.floor(Math.random() * 300) + 340;
         random = Math.random(); 
-        if (random<0.25) image = f1 ;  
-        else if (random>0.25 && random<=0.5) image = f2 ; 
-        else if (random>0.5 && random<=0.75) image = f3 ; 
-        else image = f4 ; 
+        if (random<0.25)  wicked[i] = new Wicked(x, y, 85, 60, f1)  ;  
+        else if (random>0.25 && random<=0.5)  wicked[i] = new Wicked(x, y, 85, 60, f2) 
+        else if (random>0.5 && random<=0.75)  wicked[i] = new Wicked(x, y, 85, 60, f3)  ; 
+        else  wicked[i] = new Wicked(x, y, 80, 100, f4) ; 
 
-        wicked[i] = new Wicked(x, y, image);
+       
     }
     
 
@@ -70,11 +72,11 @@ canvas.addEventListener('click', (evt) => {
             // if click on wicked
             console.log("hey");
             for(let i=0; i<nbWicked; i++){
-                console.log(evt.x,"Xentre",wicked[i].x,"-",(wicked[i].x + 70)); 
-                console.log(evt.y,"Yentre",wicked[i].y,"-",(wicked[i].y + 80));
+                console.log(evt.x,"Xentre",wicked[i].x,"-",(wicked[i].x + wicked[i].l)); 
+                console.log(evt.y,"Yentre",wicked[i].y,"-",(wicked[i].y + wicked[i].h));
                 if(!(wicked[i].dead)) {
-                    if (evt.x-200 >= wicked[i].x && evt.x-200 <= (wicked[i].x + 70) 
-                    && evt.y-150 >= wicked[i].y && evt.y-150 <= (wicked[i].y + 80)) {
+                    if (evt.x-200 >= wicked[i].x && evt.x-200 <= (wicked[i].x + wicked[i].l) 
+                    && evt.y-150 >= wicked[i].y && evt.y-150 <= (wicked[i].y + wicked[i].h)) {
                             wicked[i].dead=1 ; 
                             points ++ ; 
                     };   
@@ -125,10 +127,6 @@ function gameLoop(timeStamp){
 function draw(){
     context.clearRect(0, 0, 1500, 750); // cleaning screen
 
-    context.lineWidth = "10";
-    context.strokeStyle = "blue";
-    context.rect(40, 40, 150, 100);
-
     switch(state){
 
         default : // beginning of the game (-> case 0)
@@ -138,7 +136,7 @@ function draw(){
         case 1 : // game 
             for(let i=0; i<nbWicked; i++){
                 if(!(wicked[i].dead)){
-                    context.drawImage(wicked[i].f, wicked[i].x, wicked[i].y, 70, 80);
+                    context.drawImage(wicked[i].f, wicked[i].x, wicked[i].y, wicked[i].l, wicked[i].h);
                 }
             }
             context.font = '60px serif';
