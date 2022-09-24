@@ -6,8 +6,19 @@
             <g transform="matrix(1.54188,0,0,1.41943,-293.706,-150.702)">
                 <rect x="222.914" y="159.009" width="972.841" height="528.381" style="fill-opacity:0.4;"/>
             </g>
-            <g transform="matrix(1,0,0,1,-279.196,139.811)">
-                <text x="617.493px" y="363.629px" style="font-family:'XavierSans-Regular2', 'XavierSans';font-size:222.24px;fill:rgb(255,0,0);">PERDU !</text>
+            <g transform="matrix(0.743112,0,0,0.743112,40.8223,6.94018)">
+                <text x="617.493px" y="363.629px" style="font-family:'XavierSans-Regular2', 'XavierSans';font-size:222.24px;fill:rgb(255,0,0);">PERDU</text>
+            </g>
+            <g transform="matrix(1,0,0,1,-1936.38,-1094.88)">
+                <text x="2478.98px" y="1483.38px" style="font-family:'FelixTitlingMT', 'Felix Titling', fantasy;font-size:36px;fill:white;">V<tspan x="2502.37px 2531.64px " y="1483.38px 1483.38px ">ou</tspan>s v<tspan x="2609.76px 2639.03px " y="1483.38px 1483.38px ">ou</tspan>s etes bien b<tspan x="2891.04px 2912.65px 2935.29px 2957.03px " y="1483.38px 1483.38px 1483.38px 1483.38px ">attu</tspan></text>
+                <text x="2623.12px" y="1519.38px" style="font-family:'FelixTitlingMT', 'Felix Titling', fantasy;font-size:36px;fill:white;">bla bla bla</text>
+            </g>
+            <g transform="matrix(1.43857,0,0,1.19044,-3113.2,-1399.76)">
+                <rect x="2492.85" y="1655.02" width="445.095" height="137.62" style="fill:rgb(255,0,0);"/>
+            </g>
+            <g transform="matrix(0.546897,0,0,0.546897,167.973,439.666)">
+                <text x="617.493px" y="363.629px" style="font-family:'XavierSans-Regular2', 'XavierSans';font-size:96.89px;fill:white;">Entrer a<tspan x="1112.6px 1188.85px 1213.08px 1267.14px 1344.26px " y="363.629px 363.629px 363.629px 363.629px 363.629px ">u tab</tspan>lea<tspan x="1590.46px " y="363.629px ">u</tspan></text>
+                <text x="793.978px" y="484.838px" style="font-family:'XavierSans-Regular2', 'XavierSans';font-size:96.89px;fill:white;">des legendes</text>
             </g>
         </g>
     </g>
