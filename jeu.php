@@ -51,16 +51,17 @@
  
     }
 
-    if(isset($_COOKIE["points"])){
-       $Score = $_COOKIE["points"] ;
-        $q=$BDD->prepare('SELECT Score FROM utilisateur WHERE IdUtilisateur=?');
-        $q->execute(array($_SESSION['IdUtilisateur']));
-        $result = $q->fetch();
-        if($result['Score']<$Score){
-            $q=$BDD -> prepare('UPDATE utilisateur SET Score=? WHERE IdUtilisateur = ?');
-            $q->execute(array($Score,$_SESSION['IdUtilisateur']));
-        }
-    
+    if(isset($_SESSION['IdUtilisateur'])){
+        if(isset($_COOKIE["points"])){
+            $Score = $_COOKIE["points"] ;
+             $q=$BDD->prepare('SELECT Score FROM utilisateur WHERE IdUtilisateur=?');
+             $q->execute(array($_SESSION['IdUtilisateur']));
+             $result = $q->fetch();
+             if($result['Score']<$Score){
+                 $q=$BDD -> prepare('UPDATE utilisateur SET Score=? WHERE IdUtilisateur = ?');
+                 $q->execute(array($Score,$_SESSION['IdUtilisateur']));
+             }
+         }
     }
    
 
@@ -121,7 +122,7 @@
             <p id="go-inscription" class="go">Pas encore inscrit ?</p>
         </section>
 
-        <section id="inscription" class="inscription">
+        <section id="inscription" class="inscription un-display">
             <h1 class="title">Inscription</h1>
             <form method="post">
                 <input type="text" name="Pseudo" placeholder="Pseudo" value="<?php if (isset($Pseudo)) echo $Pseudo; ?>"
@@ -141,32 +142,33 @@
 
             </canvas>
         </section>
-        <h1 id="title-turn" class="title titleLeaderboard"> Leaderboard </h1>
-        <table>
-            <thead>
-                <tr>
-                    <th> Pseudo </th>
-                    <th> Score </th>
-                </tr>
-            </thead>
-            <tbody>
-                
-            <?php 
-                $q=$BDD->prepare('SELECT * FROM utilisateur WHERE Score > 0 ORDER BY Score DESC');
-                $q->execute(array()); 
-                foreach($q as $ligne){
-            ?>
-                <tr>
-                    <td class="pseudoLeaderBoard">
-                        <?php echo $ligne['Pseudo']; ?>
-                    
-                    <td>
-                        <?php echo $ligne['Score'];?>
-                    </td>
-            <?php } ?>
-            </tbody>
-        </table>
-            <?php } ?>
+        <section class="table">
+            <h1 id="title-turn" class="title titleLeaderboard"> Leaderboard </h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th> Pseudo </th>
+                        <th> Score </th>
+                    </tr>
+                </thead>
+                <tbody>          
+<?php 
+    $q=$BDD->prepare('SELECT * FROM utilisateur WHERE Score > 0 ORDER BY Score DESC');
+    $q->execute(array()); 
+    foreach($q as $ligne){ ?>
+                    <tr>
+                        <td class="pseudoLeaderBoard">
+                            <?php echo $ligne['Pseudo']; ?>
+                        </td>
+                        <td>
+                            <?php echo $ligne['Score'];?>
+                        </td>
+                    </tr>
+        <?php } ?>
+                </tbody>
+            </table>
+            </section>
+                <?php } ?>
 
     </main>
 </body>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : dim. 11 sep. 2022 à 15:58
+-- Généré le : sam. 24 sep. 2022 à 13:57
 -- Version du serveur : 5.7.24
 -- Version de PHP : 8.0.1
 
@@ -48,9 +48,12 @@ INSERT INTO `commentaires` (`IdCommentaire`, `Nom`, `NbEtoiles`, `Date`, `Commen
 (6, 'Melodie Corbeau', 4, '2022-09-06', 'Très chouette,  en plus il y avait du beau temps qui est assez rare.\r\nLes graffitis en moins sur les mur du chateau auraient été un plus. Dommage  que certaines personnes s\'autorisent à détériorer des monuments aussi important que celui-ci :\'('),
 (7, 'Byzef\'', 5, '2022-08-21', 'Quelle ne fut pas ma surprise lorsque ce lieu magique, ex résidence du roi Arthur, a guéri ma torsion par une simple pose de ces dernières  sur les créneaux, probablement bénis par les poils de barbe (ou autre, qu\'en sais-je) de Merlin l enchanteur lui même, qui étaient visibles en masse sur les hauts remparts de cette magnifique demeure.\r\nA moins que de nombreuses personnes viennent se faire guérir leurs torsions ici'),
 (8, 'REMI LE RIGOLO', 5, '2022-08-25', 'Hyper énergétique ! Et regardez qui on a trouvé en concert privé à l\'intérieur !'),
-(9, '', 5, '2022-08-10', 'Super lieu !!!! j’adore ;p'),
+(9, 'marie Le borgne', 5, '2022-08-10', 'Super lieu !!!! j’adore ;p'),
 (10, 'Liluya', 5, '2022-09-09', 'Je suis venue visiter ce petit bout de continent suite à la sortie du Tube \"Belle-île-en-Mer, Marie-Galante\" de Laurent Voulzy, l\'île d\'Ouessant étant cité dans sa chanson.\r\n\r\nPour l\'occasion, j\'ai réservé ce Air BNB pour deux semaines, et quelle n\'en fut ma surprise !\r\nTout est incroyable !\r\nLa paille et les cailloux sont tellement confortable !\r\nNe parlons pas des baies vitrées donnant de la luminosité à la pièce de vie !\r\nQuand à la cuisine installée par le propriétaire, un petit feu de camp, j\'ai trouvé ça charmant et rustique !\r\nJe donne 5 étoiles !\r\n\r\nNB : Attention cependant à la moisissure sur les murs'),
-(11, 'Jacques Célère', 5, '2022-08-04', 'Super lieu dépaysant, un endroit magnifique pour échapper à la réalité. Vous pourrez y retrouver Jésus de Nazareth, la boîte des 4 DVD (sans les DVD), parmi de nombreux tessons de bouteilles et pierres jonchant le sol.');
+(11, 'Jacques Célère', 5, '2022-08-04', 'Super lieu dépaysant, un endroit magnifique pour échapper à la réalité. Vous pourrez y retrouver Jésus de Nazareth, la boîte des 4 DVD (sans les DVD), parmi de nombreux tessons de bouteilles et pierres jonchant le sol.'),
+(12, 'SanSelAjouté', 5, '2022-09-14', 'Magnifique territoire pour la pratique de la pêche ainsi que de la chasse au petit gibier, que je pratique de façon réglementée bien entendu. Avis aux intéressés, le permis de chasse est délivré à la crêperie plus bas en ville, rue Ben Dover, faute d\'office du tourisme (cette dernière ayant fermé).\r\n\r\nAttention toutefois et je rebondis sur un commentaire précédent, la faune locale notamment les mouettes sont assez agressives, suite à l\'abondance de poulpes depuis quelques mois, les pauvres se font voler naturellement leur nourriture. 2 mouettes ont failli me pincer. Une chance d\'être équipé comme chasseur.\r\n\r\nUn paysage breton comme on les aime !'),
+(13, 'Stanislas Jacquin (“THE__Thugs”)', 5, '2022-09-15', 'Top endroit'),
+(14, 'Thomas BLUSSON', 5, '2022-09-16', 'Sublime, un incontournable de cette île. Le château est très spacieux est bien restauré, avec des proprios en or. Clairement meilleur que les chateaux de la loire je recommande vraiment.');
 
 -- --------------------------------------------------------
 
@@ -60,17 +63,17 @@ INSERT INTO `commentaires` (`IdCommentaire`, `Nom`, `NbEtoiles`, `Date`, `Commen
 
 CREATE TABLE `utilisateur` (
   `IdUtilisateur` int(11) NOT NULL,
-  `Nom` text NOT NULL,
+  `Pseudo` text NOT NULL,
   `Motdepasse` text NOT NULL,
-  `Mail` text NOT NULL
+  `Score` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`IdUtilisateur`, `Nom`, `Motdepasse`, `Mail`) VALUES
-(1, 'Jacques Célère', 'salut', 'JC@gmail.com');
+INSERT INTO `utilisateur` (`IdUtilisateur`, `Pseudo`, `Motdepasse`, `Score`) VALUES
+(1, 'SasukeMaster69', 'naruto', 69);
 
 --
 -- Index pour les tables déchargées
@@ -96,13 +99,13 @@ ALTER TABLE `utilisateur`
 -- AUTO_INCREMENT pour la table `commentaires`
 --
 ALTER TABLE `commentaires`
-  MODIFY `IdCommentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `IdCommentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
 --
 ALTER TABLE `utilisateur`
-  MODIFY `IdUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `IdUtilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
