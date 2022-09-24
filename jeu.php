@@ -46,12 +46,25 @@
             }else{
                 echo 'Les mots de passe sont différents';
             }
-            
-
-
         }
 
     }
+
+    if(isset($_COOKIE["points"])){
+       $Score = $_COOKIE["points"] ;
+        $q=$BDD->prepare('SELECT Score FROM utilisateur WHERE IdUtilisateur=?');
+        $q->execute(array($_SESSION['IdUtilisateur']));
+        $result = $q->fetch();
+        if($result['Score']<$Score){
+            $q=$BDD -> prepare('UPDATE utilisateur SET Score=? WHERE IdUtilisateur = ?');
+            $q->execute(array($Score,$_SESSION['IdUtilisateur']));
+        }
+    
+    }
+   
+        
+
+
 ?>
 
 
@@ -90,7 +103,9 @@
 
 <body>
 
-<?php  require_once("navbar.php"); ?>
+<?php 
+        require_once("navbar.php");
+?>
 
     <main>
 <?php if(!(isset($_SESSION['IdUtilisateur']))) { ?>

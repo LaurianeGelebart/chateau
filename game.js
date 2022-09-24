@@ -105,6 +105,7 @@ canvas.addEventListener('click', (evt) => {
 
         case 2 : // end of the game 
             if(true) state = 1 ; 
+            sendToPHP();
             break ; 
     }
 })
@@ -128,10 +129,8 @@ function gameLoop(timeStamp){
             }
             for(let i=0; i<nbWicked; i++){
                 if(!wicked[i].dead && !wicked[i].deathInProgress) wicked[i].move();
-                if(wicked[i].x > 1200) state=2; // end of the game 
-                //if(wicked[i].x > 1300) wicked[i].dead=1; //Boucle
-                console.log(wicked[i].timeDeath, difficulty, wicked[i].dead ); 
                 if (wicked[i].deathInProgress && wicked[i].timeDeath < difficulty) wicked[i].dead = 1 ; 
+                if(wicked[i].x > 1200) state=2 ;  
             }
             break ; 
 
@@ -168,5 +167,16 @@ function draw(){
             context.drawImage(lose, 0, 0);
             break ; 
     }    
+}
+
+
+function sendToPHP(){
+    const d = new Date();
+    d.setTime(d.getTime() + (24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = "points" + "=" + points + ";" + expires + ";path=/";
+
+    window.location.reload(false); 
+
 }
 
