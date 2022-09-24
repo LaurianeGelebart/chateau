@@ -1,7 +1,7 @@
 <?php
 try{
     //Serveur Local
-    $BDD=new PDO('mysql:host=localhost;dbname=chateau;charset=utf8','root','root',
+    $BDD=new PDO('mysql:host=localhost;dbname=chateau;charset=utf8','root','',
     array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 }
 

@@ -12,27 +12,38 @@ const f1 = new Image();
 const f2 = new Image();
 const f3 = new Image();
 const f4 = new Image();
+const death = new Image();
 const lose = new Image();
 const beginning = new Image();
 
 class Wicked {
 
     constructor(x, y, h, l, f, v) {
+      this.xStart=x;
+      this.yStart=y;
       this.x = x; //posX
       this.y = y; //posY
       this.h = h; //largeur
       this.l = l; //longueur
       this.f = f ; //image 
       this.dead = 0 ;
-      this.xStart=x;
-      this.yStart=y;
+      this.deathInProgress = 0 ; 
+      this.timeDeath = 0 ; //
       this.direction=(this.yStart-357)/(this.xStart-1300);
-      this.vitesse=2
+      this.vitesse=2 ; 
     }
 
     move(){
-        this.x += this.vitesse ; // On peut imaginer ajouter un attribut vitesse non ? 
-        this.y += this.direction*this.vitesse;
+        this.x += this.vitesse ; 
+        this.y += this.direction*this.vitesse ;
+    }
+
+    animDeath(){
+        this.f = death ; 
+        this.l = this.h ; 
+        this.h = this.l-20; 
+        this.timeDeath = difficulty+30 ; 
+        this.deathInProgress=1 ; 
     }
 }
 
@@ -45,8 +56,9 @@ function init() {
     f2.src = 'images/perso2.1.svg';
     f3.src = 'images/perso3.1.svg';
     f4.src = 'images/perso4.1.svg';
-    lose.src = 'images/perdu.svg';
-    beginning.src = 'images/debut.svg';
+    death.src = 'images/perso1.3.svg'
+    lose.src = 'images/perdu.png';
+    beginning.src = 'images/debut.png';
 
     canvas = document.getElementById('canvas');
     context = canvas.getContext('2d');
@@ -78,15 +90,15 @@ canvas.addEventListener('click', (evt) => {
         case 1 : // game 
             // if click on wicked
             for(let i=0; i<nbWicked; i++){
-                console.log(evt.x,"Xentre",wicked[i].x,"-",(wicked[i].x + wicked[i].l)); 
-                console.log(evt.y,"Yentre",wicked[i].y,"-",(wicked[i].y + wicked[i].h));
-                if(!(wicked[i].dead)) {
+               // console.log(evt.x,"Xentre",wicked[i].x,"-",(wicked[i].x + wicked[i].l)); 
+               // console.log(evt.y,"Yentre",wicked[i].y,"-",(wicked[i].y + wicked[i].h));
+                if(!wicked[i].dead && !wicked[i].deathInProgress) {
                     if (evt.x-200 >= wicked[i].x && evt.x-200 <= (wicked[i].x + wicked[i].l) 
                     && evt.y-150 >= wicked[i].y && evt.y-150 <= (wicked[i].y + wicked[i].h)) {
-                            wicked[i].dead=1 ; 
+                            wicked[i].animDeath();  
                             points ++ ; 
                             break;
-                    };   
+                    }  
                 }
             }
             break ; 
@@ -115,9 +127,11 @@ function gameLoop(timeStamp){
                 nbWicked += (Math.random()+difficulty/1000000) > 0.99 ? 1 : 0;
             }
             for(let i=0; i<nbWicked; i++){
-                if(!wicked[i].dead) wicked[i].move();
-                if(wicked[i].x > 1300) state=2; // end of the game 
-                //if(wicked[i].x > 1300) wicked[i].dead=1;
+                if(!wicked[i].dead && !wicked[i].deathInProgress) wicked[i].move();
+                if(wicked[i].x > 1200) state=2; // end of the game 
+                //if(wicked[i].x > 1300) wicked[i].dead=1; //Boucle
+                console.log(wicked[i].timeDeath, difficulty, wicked[i].dead ); 
+                if (wicked[i].deathInProgress && wicked[i].timeDeath < difficulty) wicked[i].dead = 1 ; 
             }
             break ; 
 
@@ -141,10 +155,10 @@ function draw(){
             break ; 
 
         case 1 : // game 
-            for(let i=0; i<nbWicked; i++){
+            for(let i=0; i<nbWicked; i++){ 
                 if(!(wicked[i].dead)){
                     context.drawImage(wicked[i].f, wicked[i].x, wicked[i].y, wicked[i].l, wicked[i].h);
-                }
+               }
             }
             context.font = '60px serif';
             context.fillText(points, 20, 55);
@@ -155,3 +169,4 @@ function draw(){
             break ; 
     }    
 }
+
